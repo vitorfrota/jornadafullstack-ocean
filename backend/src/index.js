@@ -2,12 +2,12 @@ import "dotenv/config";
 import express from "express";
 import { MongoClient } from "mongodb";
 
-const MONGO_URL = "mongodb://localhost:27017";
-const MONGO_DB_NAME = "jornada-fullstack";
+const MONGO_URL = String(process.env.MONGO_URL);
+const MONGO_DBNAME = String(process.env.MONGO_DBNAME);
 
 async function main() {
   const client = await MongoClient.connect(MONGO_URL);
-  const db = client.db(MONGO_DB_NAME);
+  const db = client.db(MONGO_DBNAME);
   const collection = db.collection("scores");
 
   const app = express();
